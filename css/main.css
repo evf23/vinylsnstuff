@@ -5,7 +5,7 @@
 }
 
 body{
-	font: normal 16px sans-serif;
+	font-family: 'Montserrat', sans-serif;
 	background: #eee;
 }
 
@@ -21,15 +21,20 @@ header{
 	/* Spread out the elements inside the header. */
 	justify-content: space-between;
 	/* Align items vertically in the center. */
-	align-items: center;
 	width:100%;
 	padding: 40px 100px;
 	background-color: #2e71f2;
 	font-family: 'Raleway', sans-serif;
+	align-items: center;
 }
 
-.header-left span{
-	color: rgb(20, 234, 170);
+.navbar.center .navbar-inner {
+    text-align: center;
+}
+.navbar.center .navbar-inner .nav {
+    float: none;
+    display:inline-block;
+    vertical-align: top;  
 }
 
 .header-center ul{
@@ -38,8 +43,7 @@ header{
 
 .header-center ul li{
 	display: inline-block;
-    margin: 0 15px;
-    font-family: 'Raleway', sans-serif;
+	margin: 0 15px;
 }
 
 .header-center ul li a{
@@ -47,14 +51,6 @@ header{
 	color: #fff;
 	cursor: pointer;
 	font-weight: bold;
-}
-
-.header-center :hover{
-    color: #ced0d4;
-}
-
-.header-center :active{
-    color: #ced0d4;
 }
 
 .header-right button{
@@ -124,3 +120,25 @@ header{
 		padding:30px;
 	}
 }
+
+.jumbohead-1 {
+	font-family: 'Raleway', sans-serif;
+	font-size: 2rem;
+	font-weight: 200;
+	line-height: 1.2;
+  }
+
+p.albumdesc {
+	font-family: 'Montserrat', sans-serif;
+	margin: auto;
+	width: 100%;
+	padding: 10px;
+	text-align: center;
+	color: #323c50;
+  }
+
+.footercopy {
+  font-family: 'Raleway' , sans-serif;
+  font-weight: 100;
+  color: #FFFFFF;
+  }
