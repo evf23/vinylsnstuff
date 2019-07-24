@@ -1,0 +1,79 @@
+body, p, .navbar-nav, .btn {
+    font-family: 'Montserrat', sans-serif;
+}
+
+#mainNavbar .navbar-brand {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+    font-size: 1.7rem;
+    letter-spacing: .2rem;
+}
+
+#mainNavbar .nav-link {
+  color: #fff;
+}
+
+#mainNavbar .nav-link:hover {
+  color: #dbdbdb;
+}
+
+#mainNavbar .dropdown-item {
+  color: #fff;
+}
+
+#mainNavbar .nav-item .dropdown-menu {
+  background-color: #0d72b7;
+  border: none;
+}
+
+#mainNavbar .dropdown-item:hover {
+  background-color: rgba(255,255,255,0.1);
+}
+
+#mainNavbar span {
+  font-weight: 700;
+}
+
+#welcome {
+  background-image: url(../assets/welcome_bg.jpg);
+  background-position: center;
+  background-size: cover;
+}
+
+#randomSpin {
+  background-image: url(../assets/welcome_bg.jpg);
+  background-position: center;
+  background-size: cover;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Raleway', sans-serif;
+}
+
+.big-disc {
+  font-size: 1rem;
+}
+
+#nP .btn:hover {
+  color: #f8f9fa;
+  background-color: rgba(255,255,255,0.1);
+}
+
+footer {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    background-color: #0d72b7;
+  }
+  
+  footer p {
+    margin-bottom: .25rem;
+    color: #f8f9fa;
+  }
+
+  footer a {
+    color: #c0c0c0;
+  }
+
+  footer a:hover {
+    color: #dbdbdb
+  }
