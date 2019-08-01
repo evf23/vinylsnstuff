@@ -2,10 +2,6 @@ import React, { Component } from 'react'
 
 
 class EditAlbum extends Component {
-    constructor() {
-        super()
-        console.log("I am in render biatch!")
-    }
     render() {
         return (
             <div>

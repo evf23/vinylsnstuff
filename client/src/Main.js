@@ -6,10 +6,15 @@ import {
 } from "react-router-dom"
 import Home from "./Home"
 import EditAlbum from "./EditAlbum"
+import Collection from './Collection'
+import Wishlist from './Wishlist'
 import Container from 'react-bootstrap/Container'
+
 
 const editAlbumUrl = '/editAlbum'
 const homeUrl = '/'
+const collectionUrl = '/collection'
+const wishlistUrl = '/wishlist'
 
 class Main extends Component {
     render() {
@@ -27,10 +32,10 @@ class Main extends Component {
                                             <NavLink className="nav-link" to={editAlbumUrl}><i className="fas fa-plus mr-1"></i>Add New</NavLink>
                                         </li>
                                         <li className="nav-item">
-                                            <a className="nav-link" href="#"><i className="fas fa-compact-disc mr-1"></i>Collection</a>
+                                            <NavLink className="nav-link" to={collectionUrl}><i className="fas fa-compact-disc mr-1"></i>Collection</NavLink>
                                         </li>
                                         <li className="nav-item">
-                                            <a className="nav-link" href="#"><i className="far fa-heart mr-1"></i>Wishlist</a>
+                                            <NavLink className="nav-link" to={wishlistUrl}><i className="far fa-heart mr-1"></i>Wishlist</NavLink>
                                         </li>
                                     </ul>
                                 </div>
@@ -46,6 +51,8 @@ class Main extends Component {
                     <div className="randomSpin">
                         <Route exact path={homeUrl} component={Home} />
                         <Route path={editAlbumUrl} component={EditAlbum} />
+                        <Route path={collectionUrl} component={Collection} />
+                        <Route path={wishlistUrl} component={Wishlist} />
                     </div>
 
                     <footer>
