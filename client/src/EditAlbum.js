@@ -7,51 +7,61 @@ class EditAlbum extends Component {
     id = this.props.match.params.id
 
     state = {
-        artist: '',
-        album: '',
-        version: '',
-        label: '',
-        releaseDate: null,
-        toCollection: true,
-        toWishlist: false,
+        vinyl: {
+            artist: '',
+            album: '',
+            version: '',
+            label: '',
+            releaseDate: null,
+            toCollection: true,
+            toWishlist: false
+        },
         redirectToReferrer: false
     }
+
 
     handleChange = (event) => {
         let value = event.target.value
         let id = event.target.id
+        let updateVinyl = this.state.vinyl
         switch (id) {
             case 'artist':
-                this.setState({ artist: value })
+                updateVinyl.artist = value
                 break
             case 'album':
-                this.setState({ album: value })
+                updateVinyl.album = value
                 break
             case 'version':
-                this.setState({ version: value })
+                updateVinyl.version = value
                 break
             case 'label':
-                this.setState({ label: value })
+                updateVinyl.label = value
+                break
+            case 'releaseDate':
+                updateVinyl.releaseDate = event // release date triggered differently e.g not with even.target.value
                 break
             case 'toCollection':
-                this.setState({ toCollection: value })
+                updateVinyl.toCollection = value === 'on' 
                 break
             case 'toWishlist':
-                this.setState({ toWishlist: value })
+                updateVinyl.toWishlist = value === 'on'
                 break
             default:
                 break
         }
+        this.setState({vinyl : updateVinyl})
     }
 
     handleDate = (date) => {
-        this.setState({ releaseDate: date })
+        let updateVinyl = this.state.vinyl
+        updateVinyl.releaseDate = date
+        this.setState({vinyl : updateVinyl})
     }
 
     handleSubmit = (event) => {
         console.log("Submit handled")
         console.log(this.state)
-        this.setState({redirectToReferrer: true})
+        this.setState({ redirectToReferrer: true })
     }
 
     render() {
@@ -72,12 +82,12 @@ class EditAlbum extends Component {
                             <div className="form-group col-md-6">
                                 <label for="artist">Artist</label>
                                 <input type="text" className="form-control" id="artist"
-                                    placeholder="Artist" value={this.state.artist} onChange={this.handleChange} />
+                                    placeholder="Artist" value={this.state.vinyl.artist} onChange={this.handleChange} />
                             </div>
                             <div className="form-group col-md-6">
                                 <label for="album">Album</label>
                                 <input type="text" className="form-control" id="album"
-                                    placeholder="Album" value={this.state.album} onChange={this.handleChange} />
+                                    placeholder="Album" value={this.state.vinyl.album} onChange={this.handleChange} />
                             </div>
                         </div>
 
@@ -85,12 +95,12 @@ class EditAlbum extends Component {
                             <div className="form-group col-md-6">
                                 <label for="version">Version</label>
                                 <input type="text" className="form-control" id="version"
-                                    placeholder="Version" value={this.state.version} onChange={this.handleChange} />
+                                    placeholder="Version" value={this.state.vinyl.version} onChange={this.handleChange} />
                             </div>
                             <div className="form-group col-md-6">
                                 <label for="label">Label</label>
                                 <input type="text" className="form-control" id="label"
-                                    placeholder="Label" value={this.state.label} onChange={this.handleChange} />
+                                    placeholder="Label" value={this.state.vinyl.label} onChange={this.handleChange} />
                             </div>
                         </div>
 
@@ -99,7 +109,7 @@ class EditAlbum extends Component {
                                 <label for="releaseDay">Release Day</label>
                                 <DatePicker
                                     className="input-group date"
-                                    selected={this.state.releaseDate}
+                                    selected={this.state.vinyl.releaseDate}
                                     onChange={this.handleDate}
                                     peekNextMonth
                                     showMonthDropdown
@@ -117,12 +127,12 @@ class EditAlbum extends Component {
                             Select
                             <div className="form-check">
                                 <input className="form-check-input" type="radio" name="addNew"
-                                    id="toCollection" checked={this.state.toCollection ? 'on' : 'off'} onChange={this.handleChange} />
+                                    id="toCollection" checked={this.state.vinyl.toCollection ? 'on' : 'off'} onChange={this.handleChange} />
                                 <label className="form-check-label" for="toCollection">Add new album to collection</label>
                             </div>
                             <div className="form-check">
                                 <input className="form-check-input" type="radio" name="addNew"
-                                    id="toWishlist" checked={this.toWishlist} onChange={this.handleChange} />
+                                    id="toWishlist" checked={this.state.vinyl.toWishlist} onChange={this.handleChange} />
                                 <label className="form-check-label" for="toWishlist">Add new album to wishlist</label>
                             </div>
                         </div>

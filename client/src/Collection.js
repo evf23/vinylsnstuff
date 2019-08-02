@@ -9,11 +9,17 @@ class Collection extends Component {
         return (
             <div>
                 <h1>My Collection</h1>
-                <ol>
-                    {this.state.collection.map(vinyl =>
-                        <li>{vinyl.name}</li>
-                    )}
-                </ol>
+                {
+                    this.state.collection.length === 0 ? (
+                        <h3>Buuuh no albums in collection</h3>
+                    ) : (
+                        <ol>
+                           {this.state.collection.map(vinyl =>
+                                <li>{vinyl.name}</li>
+                            )}
+                        </ol>
+                    )
+                }
             </div>
         )
     }

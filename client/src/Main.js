@@ -11,7 +11,7 @@ import Wishlist from './Wishlist'
 import Container from 'react-bootstrap/Container'
 
 
-const editAlbumUrl = '/editAlbum/:id'
+const editAlbumUrl = '/editAlbum'
 const homeUrl = '/'
 const collectionUrl = '/collection'
 const wishlistUrl = '/wishlist'
