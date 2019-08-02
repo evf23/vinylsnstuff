@@ -1,7 +1,60 @@
 import React, { Component } from 'react'
 
-
 class EditAlbum extends Component {
+    state = {
+        artist: '',
+        album: '',
+        version: '',
+        label: '',
+        releaseDay: '',
+        releaseMonth: '',
+        releaseYear: '',
+        inCollection: false,
+        inWishlist: false
+    }
+
+    handleChange = (event) => {
+        let value = event.target.value
+        let id = event.target.id
+        switch (id) {
+            case 'artist':
+                this.setState({ artist: value })
+                break
+            case 'album':
+                this.setState({ album: value })
+                break
+            case 'version':
+                this.setState({ version: value })
+                break
+            case 'label':
+                this.setState({ label: value })
+                break
+            case 'releaseDay':
+                this.setState({ releaseDay: value })
+                break
+            case 'releaseMonth':
+                this.setState({ releaseMonth: value })
+                break
+            case 'releaseYear':
+                this.setState({ releaseYear: value })
+                break
+            case 'toCollection':
+                this.setState({ toCollection: value })
+                break
+            case 'toWishlist':
+                this.setState({ toWishlist: value })
+                break
+            default:
+                break
+        }
+    }
+
+    handleSubmit = (event) => {
+        console.log("Submit handled")
+        console.log(this.state)
+        event.preventDefault()
+    }
+
     render() {
         return (
             <div>
@@ -12,33 +65,37 @@ class EditAlbum extends Component {
                 </section>
 
                 <div className="container p-5">
-                    <form>
+                    <form onSubmit={this.handleSubmit}>
                         <div className="form-row">
                             <div className="form-group col-md-6">
                                 <label for="artist">Artist</label>
-                                <input type="text" className="form-control" id="artist" placeholder="Artist" />
+                                <input type="text" className="form-control" id="artist"
+                                    placeholder="Artist" value={this.state.artist} onChange={this.handleChange} />
                             </div>
                             <div className="form-group col-md-6">
                                 <label for="album">Album</label>
-                                <input type="text" className="form-control" id="album" placeholder="Album" />
+                                <input type="text" className="form-control" id="album"
+                                    placeholder="Album" value={this.state.album} onChange={this.handleChange} />
                             </div>
                         </div>
 
                         <div className="form-row">
                             <div className="form-group col-md-6">
                                 <label for="version">Version</label>
-                                <input type="text" className="form-control" id="version" placeholder="Version" />
+                                <input type="text" className="form-control" id="version"
+                                    placeholder="Version" value={this.state.version} onChange={this.handleChange} />
                             </div>
                             <div className="form-group col-md-6">
                                 <label for="label">Label</label>
-                                <input type="text" className="form-control" id="label" placeholder="Label" />
+                                <input type="text" className="form-control" id="label"
+                                    placeholder="Label" value={this.state.label} onChange={this.handleChange} />
                             </div>
                         </div>
 
                         <div className="form-row">
                             <div className="form-group col-md-2">
                                 <label for="releaseDay">Release Day</label>
-                                <select id="releaseDay" className="form-control">
+                                <select id="releaseDay" className="form-control" value={this.state.releaseDay} onChange={this.handleChange}>
                                     <option selected>1</option>
                                     <option>2</option>
                                     <option>3</option>
@@ -74,7 +131,7 @@ class EditAlbum extends Component {
                             </div>
                             <div className="form-group col-md-3">
                                 <label for="releaseMonth">Release Month</label>
-                                <select id="releaseMonth" className="form-control">
+                                <select id="releaseMonth" className="form-control" value={this.state.releaseMonth} onChange={this.handleChange}>
                                     <option selected>January</option>
                                     <option>February</option>
                                     <option>March</option>
@@ -91,7 +148,7 @@ class EditAlbum extends Component {
                             </div>
                             <div className="form-group col-md-3">
                                 <label for="releaseYear">Release Year</label>
-                                <select id="releaseYear" className="form-control">
+                                <select id="releaseYear" className="form-control" value={this.state.releaseYear} onChange={this.handleChange}>
                                     <option selected>Choose...</option>
                                     <option>...</option>
                                 </select>

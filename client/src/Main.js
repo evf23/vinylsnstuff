@@ -48,7 +48,7 @@ class Main extends Component {
                         </nav>
                     </header>
                     
-                    <div className="randomSpin">
+                    <div id="routes">
                         <Route exact path={homeUrl} component={Home} />
                         <Route path={editAlbumUrl} component={EditAlbum} />
                         <Route path={collectionUrl} component={Collection} />

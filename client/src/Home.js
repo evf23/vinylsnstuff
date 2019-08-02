@@ -2,13 +2,9 @@ import React, { Component } from 'react'
 import img from './assets/album-covers/radiohead_ok_computer_standard.jpeg'
 
 class Home extends Component {
-    constructor() {
-        super()
-        console.log("I am in home biatch!")
-    }
     render() {
         return (
-            <div>
+            <div id="welcome">
                 <div className="container p-4">
                     <div className="card m-4 mx-auto border-dark" style={{ "maxWidth": "800px" }}>
                         <div className="row no-gutters align-items-center">

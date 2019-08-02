@@ -9,11 +9,17 @@ class Wishlist extends Component {
         return (
             <div>
                 <h1>My Wishlist</h1>
-                <ol>
-                    {this.state.wishlist.map(vinyl =>
-                        <li>{vinyl.name}</li>
-                    )}
-                </ol>
+                {
+                    this.state.wishlist.length === 0 ? (
+                        <h3>Buuuh no albums in wishlist</h3>
+                    ) : (
+                        <ol>
+                           {this.state.wishlist.map(vinyl =>
+                                <li>{vinyl.name}</li>
+                            )}
+                        </ol>
+                    )
+                }
             </div>
         )
     }
