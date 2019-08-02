@@ -1,16 +1,20 @@
 import React, { Component } from 'react'
+import DatePicker from 'react-datepicker'
+import "react-datepicker/dist/react-datepicker.css";
+import { Redirect } from 'react-router-dom'
 
 class EditAlbum extends Component {
+    id = this.props.match.params.id
+
     state = {
         artist: '',
         album: '',
         version: '',
         label: '',
-        releaseDay: '',
-        releaseMonth: '',
-        releaseYear: '',
-        inCollection: false,
-        inWishlist: false
+        releaseDate: null,
+        toCollection: true,
+        toWishlist: false,
+        redirectToReferrer: false
     }
 
     handleChange = (event) => {
@@ -29,15 +33,6 @@ class EditAlbum extends Component {
             case 'label':
                 this.setState({ label: value })
                 break
-            case 'releaseDay':
-                this.setState({ releaseDay: value })
-                break
-            case 'releaseMonth':
-                this.setState({ releaseMonth: value })
-                break
-            case 'releaseYear':
-                this.setState({ releaseYear: value })
-                break
             case 'toCollection':
                 this.setState({ toCollection: value })
                 break
@@ -49,13 +44,20 @@ class EditAlbum extends Component {
         }
     }
 
+    handleDate = (date) => {
+        this.setState({ releaseDate: date })
+    }
+
     handleSubmit = (event) => {
         console.log("Submit handled")
         console.log(this.state)
-        event.preventDefault()
+        this.setState({redirectToReferrer: true})
     }
 
     render() {
+        if (this.state.redirectToReferrer) {
+            return <Redirect to="/" />
+        }
         return (
             <div>
                 <section id="welcome" className="jumbotron text-center">
@@ -95,63 +97,15 @@ class EditAlbum extends Component {
                         <div className="form-row">
                             <div className="form-group col-md-2">
                                 <label for="releaseDay">Release Day</label>
-                                <select id="releaseDay" className="form-control" value={this.state.releaseDay} onChange={this.handleChange}>
-                                    <option selected>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                    <option>6</option>
-                                    <option>7</option>
-                                    <option>8</option>
-                                    <option>9</option>
-                                    <option>10</option>
-                                    <option>11</option>
-                                    <option>12</option>
-                                    <option>13</option>
-                                    <option>14</option>
-                                    <option>15</option>
-                                    <option>16</option>
-                                    <option>17</option>
-                                    <option>18</option>
-                                    <option>19</option>
-                                    <option>20</option>
-                                    <option>21</option>
-                                    <option>22</option>
-                                    <option>23</option>
-                                    <option>24</option>
-                                    <option>25</option>
-                                    <option>26</option>
-                                    <option>27</option>
-                                    <option>28</option>
-                                    <option>29</option>
-                                    <option>30</option>
-                                    <option>31</option>
-                                </select>
-                            </div>
-                            <div className="form-group col-md-3">
-                                <label for="releaseMonth">Release Month</label>
-                                <select id="releaseMonth" className="form-control" value={this.state.releaseMonth} onChange={this.handleChange}>
-                                    <option selected>January</option>
-                                    <option>February</option>
-                                    <option>March</option>
-                                    <option>April</option>
-                                    <option>May</option>
-                                    <option>June</option>
-                                    <option>July</option>
-                                    <option>August</option>
-                                    <option>September</option>
-                                    <option>October</option>
-                                    <option>November</option>
-                                    <option>December</option>
-                                </select>
-                            </div>
-                            <div className="form-group col-md-3">
-                                <label for="releaseYear">Release Year</label>
-                                <select id="releaseYear" className="form-control" value={this.state.releaseYear} onChange={this.handleChange}>
-                                    <option selected>Choose...</option>
-                                    <option>...</option>
-                                </select>
+                                <DatePicker
+                                    className="input-group date"
+                                    selected={this.state.releaseDate}
+                                    onChange={this.handleDate}
+                                    peekNextMonth
+                                    showMonthDropdown
+                                    showYearDropdown
+                                    dropdownMode="select"
+                                />
                             </div>
                             <div className="form-group col-md-4">
                                 <label for="exampleFormControlFile1">Upload album cover</label>
@@ -162,11 +116,13 @@ class EditAlbum extends Component {
                         <div className="form-group col-md-5">
                             Select
                             <div className="form-check">
-                                <input className="form-check-input" type="radio" name="addNew" id="toCollection" value="toCollection" checked />
+                                <input className="form-check-input" type="radio" name="addNew"
+                                    id="toCollection" checked={this.state.toCollection ? 'on' : 'off'} onChange={this.handleChange} />
                                 <label className="form-check-label" for="toCollection">Add new album to collection</label>
                             </div>
                             <div className="form-check">
-                                <input className="form-check-input" type="radio" name="addNew" id="toWishlist" value="toWishlist" />
+                                <input className="form-check-input" type="radio" name="addNew"
+                                    id="toWishlist" checked={this.toWishlist} onChange={this.handleChange} />
                                 <label className="form-check-label" for="toWishlist">Add new album to wishlist</label>
                             </div>
                         </div>
