@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import {
     Route,
     NavLink,
-    HashRouter
+    BrowserRouter
 } from "react-router-dom"
 import Home from "./Home"
 import EditAlbum from "./EditAlbum"
@@ -19,7 +19,7 @@ const wishlistUrl = '/wishlist'
 class Main extends Component {
     render() {
         return (
-            <HashRouter>
+            <BrowserRouter>
                 <div>
                     <header>
                         <nav id="mainNavbar" className="navbar navbar-dark navbar-expand-lg p-5" style={{ 'background': "#0d72b7" }}>
@@ -61,7 +61,7 @@ class Main extends Component {
                         </div>
                     </footer>
                 </div>
-            </HashRouter>
+            </BrowserRouter>
         )
     }
 }
