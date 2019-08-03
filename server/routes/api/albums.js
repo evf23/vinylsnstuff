@@ -31,7 +31,7 @@ router.post('/', (req, res) => {
         return res.status(400).json({ msg: 'Please include an artist and album' })
     }
 
-    newVinyl.save().then(() => console.log('Vinyl persisted'))
+    newVinyl.save().then(() => console.log('Vinyl persisted', newVinyl))
     res.json(newVinyl) // return all vinyls
 })
 

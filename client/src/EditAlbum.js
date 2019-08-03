@@ -13,12 +13,11 @@ class EditAlbum extends Component {
             version: '',
             label: '',
             releaseDate: null,
-            toCollection: true,
-            toWishlist: false
+            inCollection: true,
+            inWishlist: false
         },
         redirectToReferrer: false
     }
-
 
     handleChange = (event) => {
         let value = event.target.value
@@ -37,31 +36,36 @@ class EditAlbum extends Component {
             case 'label':
                 updateVinyl.label = value
                 break
-            case 'releaseDate':
-                updateVinyl.releaseDate = event // release date triggered differently e.g not with even.target.value
-                break
             case 'toCollection':
-                updateVinyl.toCollection = value === 'on' 
+                updateVinyl.inCollection = value === 'on'
                 break
             case 'toWishlist':
-                updateVinyl.toWishlist = value === 'on'
+                updateVinyl.inWishlist = value === 'on'
                 break
             default:
                 break
         }
-        this.setState({vinyl : updateVinyl})
+        this.setState({ vinyl: updateVinyl })
     }
 
     handleDate = (date) => {
         let updateVinyl = this.state.vinyl
         updateVinyl.releaseDate = date
-        this.setState({vinyl : updateVinyl})
+        this.setState({ vinyl: updateVinyl })
     }
 
     handleSubmit = (event) => {
         console.log("Submit handled")
         console.log(this.state)
-        this.setState({ redirectToReferrer: true })
+        fetch('/',
+            {
+                method: "POST",
+                mode: "cors",
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(this.state.vinyl)
+            }
+        ).then(response => response.json())
+        .then(this.setState({ redirectToReferrer: true }))
     }
 
     render() {
@@ -127,12 +131,12 @@ class EditAlbum extends Component {
                             Select
                             <div className="form-check">
                                 <input className="form-check-input" type="radio" name="addNew"
-                                    id="toCollection" checked={this.state.vinyl.toCollection ? 'on' : 'off'} onChange={this.handleChange} />
+                                    id="toCollection" checked={this.state.vinyl.inCollection ? 'on' : 'off'} onChange={this.handleChange} />
                                 <label className="form-check-label" for="toCollection">Add new album to collection</label>
                             </div>
                             <div className="form-check">
                                 <input className="form-check-input" type="radio" name="addNew"
-                                    id="toWishlist" checked={this.state.vinyl.toWishlist} onChange={this.handleChange} />
+                                    id="toWishlist" checked={this.state.vinyl.inWishlist} onChange={this.handleChange} />
                                 <label className="form-check-label" for="toWishlist">Add new album to wishlist</label>
                             </div>
                         </div>
