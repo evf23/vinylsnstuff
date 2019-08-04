@@ -5,6 +5,13 @@ class Wishlist extends Component {
         wishlist: []
     }
 
+    // Runs automatically when the component is mounted
+    componentDidMount() {
+        fetch('/api/albums/wishlist')
+            .then(res => res.json())
+            .then(wishlist => this.setState({ wishlist: wishlist }))
+    }
+
     render() {
         return (
             <div>
@@ -15,7 +22,7 @@ class Wishlist extends Component {
                     ) : (
                         <ol>
                            {this.state.wishlist.map(vinyl =>
-                                <li>{vinyl.name}</li>
+                                <li>{vinyl.album}, {vinyl.artist}</li>
                             )}
                         </ol>
                     )

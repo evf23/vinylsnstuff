@@ -4,11 +4,36 @@ const VinylModel = require('../../model/VinylModel')
 
 // gets all vinyls 
 router.get('/', (req, res) => {
+    // VinylModel.find().lean().exec((err, vinyls) => {
+    //     if (err) {
+    //         return res.json({ msg: 'Could not retrieve vinyls' })
+    //     }
+    //     console.log('Vinyls fetched from server')
+    //     res.json(vinyls)
+    // })
+    return this.getVinyls
+})
+
+getVinyls = (res) => {
     VinylModel.find().lean().exec((err, vinyls) => {
         if (err) {
             return res.json({ msg: 'Could not retrieve vinyls' })
         }
         console.log('Vinyls fetched from server')
+        res.json(vinyls)
+    })
+}
+
+// get all by query 
+router.get('/:byList', (req, res) => {
+    const listType = req.params.byList
+    const query = {'inCollection': listType === 'collection'}
+    VinylModel.find(query).lean().exec((err, vinyls) => {
+        if (err) {
+            console.log(err)
+            return res.json({ msg: 'Could not retrieve vinyls by listType=' + listType})
+        }
+        console.log('Vinyls fetched from server using listType=' + listType)
         res.json(vinyls)
     })
 })
@@ -17,7 +42,7 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
     VinylModel.findById(req.params.id).lean().exec((err, vinyl) => {
         if (err) {
-            res.status(400).json({ msg: `No vinyl with id ${req.params.id}` })
+            res.status(400).json({ msg: `No vinyl with id  ${req.params.id}` })
         } else {
             res.json(vinyl)
         }
@@ -63,9 +88,12 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
     VinylModel.findByIdAndDelete(req.params.id, (err, vinyl) => {
         if (err) {
+            console.log("Could not delete vinyl with id " + req.params.id)
             res.json({ msg: 'Could not remove vinyl with id ' + req.params.id })
         } else {
-            console.log('Vinyl deleted')
+            console.log("Vinyl deleted", vinyl)
+            return this.getVinyls
+            // res.json({id: req.params.id})
         }
     })
 })

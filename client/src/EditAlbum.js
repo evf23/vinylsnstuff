@@ -57,7 +57,7 @@ class EditAlbum extends Component {
     handleSubmit = (event) => {
         console.log("Submit handled")
         console.log(this.state)
-        fetch('/',
+        fetch('/api/albums/',
             {
                 method: "POST",
                 mode: "cors",
